@@ -18,8 +18,8 @@ function Login() {
     auth.signInWithEmailAndPassword(email, password)
     .then(() => {
       setEmail('')
-      setPassword('')
-      setError('')
+      setPassword(' ')
+      setError(' ')
       navigate('/')
     })
     .catch((err => setError(err.message) ))
