@@ -1,0 +1,19 @@
+.login{
+    padding: 70px;
+    border: 1px solid black;
+    width: fit-content;
+    background-color: rebeccapurple;
+    display:block;
+    justify-content: center;
+    margin-left: 40%;
+    margin-left: 40%;
+    border-radius: 1ch;
+  
+}
+input{
+    padding: 7px;
+    margin: 5px;
+    border-radius: 1cm;
+    border: 1px solid;
+    width: max-content;
+}
