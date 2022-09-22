@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {auth, database} from '../../global/firebaseCofig'
 import {useNavigate} from 'react-router-dom'
+import './Registration.css';
 
 
 function Registration() {

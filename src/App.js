@@ -4,6 +4,7 @@ import Header from './components/header';
 import Login from './components/Login/Login'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Registration from './components/Login/Registration';
+import HomePage from './components/Homepage';
 
 
 
@@ -16,6 +17,7 @@ function App() {
           <Route exact path ='/' element = { <Header /> } />
           <Route path = '/login' element  ={ <Login /> } />
           <Route path = '/registration' element = { <Registration />} />
+          <Route path = '/homepage' element ={<HomePage/>}/>
         </Routes>
       </BrowserRouter>
       

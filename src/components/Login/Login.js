@@ -20,10 +20,12 @@ function Login() {
       setEmail('')
       setPassword(' ')
       setError(' ')
-      navigate('/')
+      navigate('/homepage')
     })
     .catch((err => setError(err.message) ))
   }
+
+  
   return (
     <>
         <div className='login'> 
