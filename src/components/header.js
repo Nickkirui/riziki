@@ -10,6 +10,7 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import Testimonials from "./Testimonials";
 
 export default function Header() {
   let navigate = useNavigate()
@@ -18,6 +19,8 @@ export default function Header() {
     navigate('/login')
   }
 return (
+	<>
+
 	<AppBar position="static">
 		<Toolbar>
 		
@@ -42,5 +45,9 @@ return (
 		<Button color="inherit" onClick={() => handleLogin()}>Login</Button>
 		</Toolbar>
 	</AppBar>
+	<Testimonials />
+	
+	</>
+	
 );
 }

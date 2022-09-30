@@ -3,11 +3,14 @@
     border: 1px solid black;
     width: fit-content;
     background-color: rebeccapurple;
-    display:block;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    margin-left: 40%;
-    margin-left: 40%;
-    border-radius: 1ch;
+    margin: auto;
+    padding: 3;
+    margin-top: 5;
+    
   
 }
 input{

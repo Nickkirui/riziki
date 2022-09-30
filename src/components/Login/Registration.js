@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import {auth, database} from '../../global/firebaseCofig'
 import {useNavigate} from 'react-router-dom'
 import './Registration.css';
+import { Button } from '@mui/material';
 
 
 function Registration() {
@@ -35,7 +36,7 @@ function Registration() {
   return (
     <>
         <h1>Login Form</h1>
-            <form onSubmit = {handleSignup} autoComplete = 'off'>
+            <form onSubmit = {handleSignup} autoComplete = 'off' className='input'>
 
                 <label htmlFor='name'>Name:</label>
                 <br />
@@ -56,8 +57,9 @@ function Registration() {
                 onChange={(e) => setPassword(e.target.value) } value = {password}
                 />
                 <br />
-                <button type = 'submit' >SIGNUP</button>
-
+                <Button variant="outlined" href="#outlined-buttons">
+        SIGNUP
+      </Button>
                 {error && <span>{error}</span>}
             </form>
     </>

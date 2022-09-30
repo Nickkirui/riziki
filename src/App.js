@@ -7,7 +7,6 @@ import Registration from './components/Login/Registration';
 import HomePage from './components/Homepage';
 
 
-
 function App() {
   return (
     <div className="App">
@@ -20,6 +19,7 @@ function App() {
           <Route path = '/homepage' element ={<HomePage/>}/>
         </Routes>
       </BrowserRouter>
+     
       
       
     </div>
