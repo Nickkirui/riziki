@@ -27,35 +27,39 @@ function Login() {
 
   
   return (
-    <>
-        <div className='login'> 
-            <h1>Login Form</h1>
+    
+        
+            
             <form  onSubmit = {handleLogin} autoComplete = 'off'>
-                
+                <div className='form-inner'>
+                  <h2>Login</h2>
+                  <div className='form-group'>
                 <label htmlFor='email'>Email:</label>
                 <br />
                 <input type = 'email' placeholder = 'xyz@domain.com' required
                  onChange={(e) => setEmail(e.target.value) } value = {email}
                 />
-                <br />
+                </div>
 
+                <div className='form-group'>
                 <label htmlFor='password'>Password:</label>
                 <br />
                 <input type = 'password' placeholder = 'Enter password' required
                  onChange={(e) => setPassword(e.target.value) } value = {password}
                 />
-                <br />
+                </div>
                 <button type = 'submit' >LOGIN</button>
 
                 <p>Don't have an account ?
                    <Link to = '/registration'>Create Account</Link>
                 </p>
                 {error && <span>{error}</span>}
+                </div>
             </form>
-        </div>
+        
        
 
-    </>
+    
   )
 }
 
