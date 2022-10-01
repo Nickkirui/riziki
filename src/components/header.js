@@ -45,7 +45,6 @@ return (
 		<Button color="inherit" onClick={() => handleLogin()}>Login</Button>
 		</Toolbar>
 	</AppBar>
-	<Testimonials />
 	
 	</>
 	
