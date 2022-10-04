@@ -10,7 +10,7 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import Testimonials from "./Testimonials";
+import Testimonials from "./LandComp/Testimonials";
 
 export default function Header() {
   let navigate = useNavigate()
@@ -45,7 +45,6 @@ return (
 		<Button color="inherit" onClick={() => handleLogin()}>Login</Button>
 		</Toolbar>
 	</AppBar>
-	<Testimonials />
 	
 	</>
 	

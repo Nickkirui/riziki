@@ -3,6 +3,7 @@ import {auth, database} from '../../global/firebaseCofig'
 import {useNavigate} from 'react-router-dom'
 import './Registration.css';
 import { Button } from '@mui/material';
+import Header from '../header';
 
 
 function Registration() {
@@ -35,6 +36,7 @@ function Registration() {
     }
   return (
     <>
+    <Header></Header>
         <h1>Login Form</h1>
             <form onSubmit = {handleSignup} autoComplete = 'off' className='input'>
 
