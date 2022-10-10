@@ -8,29 +8,27 @@ import HomePage from './components/Homepage';
 import Landing from './components/Landing';
 import Card from './components/Card';
 import Application from './components/Application';
+import Review from './components/Review';
 
 
 function App() {
   return (
-    <div className="App">
+    <>
+    <Header></Header>
+        <div className="App">
 
-      <BrowserRouter>
         <Routes>
           <Route exact path ='/' element = { <Landing /> } />
           <Route path = '/login' element  ={ <Login /> } />
           <Route path = '/registration' element = { <Registration />} />
           <Route path = '/homepage' element ={<HomePage/>}/>
           <Route path = '/application' element ={<Application/>}/>
-             
+          <Route path = '/review' element ={<Review/>}/>
         </Routes>
-  
-      </BrowserRouter>
-      
-  
-     
-      
-      
-    </div>
+        </div>
+    
+    </>
+
   );
 }
 

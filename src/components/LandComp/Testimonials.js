@@ -2,12 +2,13 @@ import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import './Testimonials.css';
+import { fabClasses } from "@mui/material";
 
 
 function Testimonials() {
     return (
         <Carousel
-          showArrows={true}
+          showArrows={false}
           infiniteLoop={true}
           showThumbs={false}
           showStatus={false}

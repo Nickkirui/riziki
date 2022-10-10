@@ -41,7 +41,7 @@ function Login() {
 
     <>
 
-    <Header></Header>
+    
 
             <form  onSubmit = {handleLogin}>
 
@@ -61,8 +61,7 @@ function Login() {
                           }}
               ></TextField>
               <Button variant="contained" color="info" type="submit">Login</Button>
-
-                <p>Don't have an account? <Link to = '/registration'>Create Account</Link></p>
+              <p>Don't have an account? <Link to = '/registration'>Create Account</Link></p>
               </Card>
 
 

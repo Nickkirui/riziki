@@ -2,18 +2,20 @@ import React, { useState } from 'react'
 import {auth, database} from '../../global/firebaseCofig'
 import {useNavigate} from 'react-router-dom'
 import './Registration.css';
-import { Button } from '@mui/material';
+
 import Header from '../header';
+import { Card, Button, TextField, CardHeader, CardActions } from '@mui/material'
+import { blue } from '@mui/material/colors'
 
 
 function Registration() {
 
     let navigate = useNavigate()
 
-    const [name, setName ] = useState(' ')
-    const [email, setEmail ] = useState(' ')
-    const [password, setPassword ] = useState(' ')
-    const [error, setError ] = useState(' ')
+    const [name, setName ] = useState('')
+    const [email, setEmail ] = useState('')
+    const [password, setPassword ] = useState('')
+    const [error, setError ] = useState('')
 
     const handleSignup = (e) => {
         e.preventDefault()
@@ -36,33 +38,23 @@ function Registration() {
     }
   return (
     <>
-    <Header></Header>
-        <h1>Login Form</h1>
-            <form onSubmit = {handleSignup} autoComplete = 'off' className='input'>
+   
+        
+            <form autoComplete = 'off' >
 
-                <label htmlFor='name'>Name:</label>
-                <br />
-                <input type = 'text' placeholder = 'Enter name' required
-                onChange={(e) => setName(e.target.value) } value = {name}
-                />
-                
-                <label htmlFor='email'>Email:</label>
-                <br />
-                <input type = 'email' placeholder = 'xyz@domain.com' required
-                onChange={(e) => setEmail(e.target.value) } value = {email}
-                />
-                <br />
+            <Card sx={{maxWidth: "600px", marginLeft: "auto", marginRight: "auto", marginTop: "25px", backgroundColor: blue[100], display: "flex", flexDirection: "column", gap:"10px", padding: "45px"}}>
 
-                <label htmlFor='password'>Password:</label>
-                <br />
-                <input type = 'password' placeholder = 'Enter password' required
-                onChange={(e) => setPassword(e.target.value) } value = {password}
-                />
-                <br />
-                <Button variant="outlined" href="#outlined-buttons">
-        SIGNUP
-      </Button>
-                {error && <span>{error}</span>}
+            <CardHeader
+            title="Registration Form"
+
+            />
+            <TextField variant='outlined' label="name" onChange={(e) => setName(e.target.value)} value = {name}/>
+            <TextField variant='outlined' label="email" onChange={(e) => setEmail(e.target.value)} value = {email}/>
+            <TextField variant='outlined' label="password" type="text" onChange={(e) => setPassword(e.target.value)} value = {password}/>
+            <Button onClick = {handleSignup} variant="contained" href="#outlined-buttons">SUBMIT</Button>
+            
+                {error && <span>{error}</span>};
+                </Card>
             </form>
     </>
   )
