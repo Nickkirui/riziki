@@ -1,5 +1,5 @@
 import React , {useState} from 'react'
-import './login.css'
+
 import {Link, useNavigate} from 'react-router-dom'
 import {auth} from '../../global/firebaseCofig'
 import { Card, Button, TextField, CardHeader, CardActions } from '@mui/material'
@@ -45,7 +45,7 @@ function Login() {
 
             <form  onSubmit = {handleLogin}>
 
-              <Card sx={{maxWidth: "600px", marginLeft: "auto", marginRight: "auto", marginTop: "25px", backgroundColor: blue[100], display: "flex", flexDirection: "column", gap:"10px", padding: "45px"}}>
+              <Card sx={{maxWidth: "600px", marginLeft: "auto", marginRight: "auto", marginTop: "25px", backgroundColor: blue[50], display: "flex", flexDirection: "column", gap:"10px", padding: "45px"}}>
 
             <CardHeader
             title="Log In"

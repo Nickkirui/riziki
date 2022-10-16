@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {auth, database} from '../../global/firebaseCofig'
 import {useNavigate} from 'react-router-dom'
-import './Registration.css';
+
 
 import Header from '../header';
 import { Card, Button, TextField, CardHeader, CardActions } from '@mui/material'

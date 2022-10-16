@@ -9,12 +9,14 @@ import Landing from './components/Landing';
 import Card from './components/Card';
 import Application from './components/Application';
 import Review from './components/Review';
+import Footer from './components/LandComp/Footer';
 
 
 function App() {
   return (
     <>
     <Header></Header>
+    
         <div className="App">
 
         <Routes>
@@ -25,6 +27,7 @@ function App() {
           <Route path = '/application' element ={<Application/>}/>
           <Route path = '/review' element ={<Review/>}/>
         </Routes>
+        <Footer></Footer>
         </div>
     
     </>

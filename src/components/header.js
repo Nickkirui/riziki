@@ -46,7 +46,7 @@ return (
 	<>
 
 	<AppBar position="static">
-		<Toolbar>
+		<Toolbar sx={{backgroundColor: "lightblue"}}>
 		
 		<IconButton className="Icon"
 			size="large"
@@ -61,10 +61,7 @@ return (
 		</IconButton>
 		
 
-		<Typography variant="h6"
-			component="div" sx={{ flexGrow: 1 }}>
-			RIZIKI LENDERS
-		</Typography>
+			<img width={'100px'} src="images\RIZIKI.png" alt="" />
 		{!isLoggedIn &&
 		<Button color="inherit" onClick={() => handleLogin()}>Login</Button>
 		}
