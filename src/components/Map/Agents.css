@@ -14,7 +14,7 @@
     color: rgba(0, 0, 0, 0.8);
 }
 .agents-heading span {
-    color: #fdea5c;
+    color: #257842;
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 2px;
@@ -28,7 +28,7 @@
     content: '';
     width: 50px;
     height: 1px;
-    background-color: #fdea5c;
+    background-color: #257842;
 }
 .agents-heading span::after {
     position:absolute;
@@ -37,7 +37,7 @@
     content: '';
     width: 50px;
     height: 1px;
-    background-color: #fdea5c;
+    background-color: #257842;
 }
 .agents-row {
     padding-top: 3rem;

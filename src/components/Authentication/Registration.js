@@ -3,7 +3,7 @@ import {auth, database} from '../../global/firebaseCofig'
 import {useNavigate} from 'react-router-dom'
 
 
-import Header from '../header';
+
 import { Card, Button, TextField, CardHeader, CardActions } from '@mui/material'
 import { blue } from '@mui/material/colors'
 

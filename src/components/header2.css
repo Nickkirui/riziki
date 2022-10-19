@@ -1,0 +1,47 @@
+.navbar{
+    height: 4.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: #043034;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+}
+.navitems{
+    float: left;
+    display: flex;
+    font-size: 1.3rem;
+}
+.navitems li{
+    list-style-type: none;
+    float: left;
+    justify-content: space-between;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+.navbarimg{
+    max-height: 4rem;
+    padding-top: -1rem;
+}
+
+.navbtn{
+    background-color:#043034;
+    border: 1px solid #BC9C27;
+    margin: 3px;
+    color:#BC9C27;
+    font-size:small;
+    padding: 7px;
+    border-radius: 1ch;
+    transition-duration: .5s;
+}
+
+
+.navbtn:hover{
+    background-color:#BC9C27;
+    border: 1px solid #043034;
+    margin: 3px;
+    color:#043034;
+    font-size:smaller;
+    padding: 7px;
+    border-radius: 1ch;
+}

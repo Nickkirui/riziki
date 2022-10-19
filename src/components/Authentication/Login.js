@@ -3,8 +3,8 @@ import React , {useState} from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import {auth} from '../../global/firebaseCofig'
 import { Card, Button, TextField, CardHeader, CardActions } from '@mui/material'
-import Header from '../header'
-import { blue } from '@mui/material/colors'
+
+import { green } from '@mui/material/colors'
 import {InputAdornment} from '@mui/material'
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import {IconButton} from '@mui/material'
@@ -45,7 +45,7 @@ function Login() {
 
             <form  onSubmit = {handleLogin}>
 
-              <Card sx={{maxWidth: "600px", marginLeft: "auto", marginRight: "auto", marginTop: "25px", backgroundColor: blue[50], display: "flex", flexDirection: "column", gap:"10px", padding: "45px"}}>
+              <Card sx={{maxWidth: "600px", marginLeft: "auto", marginRight: "auto", marginTop: "25px", backgroundColor: green[600], display: "flex", flexDirection: "column", gap:"10px", padding: "45px"}}>
 
             <CardHeader
             title="Log In"

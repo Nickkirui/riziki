@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 
 function CarouselComponent() {
   return (
-    <Box sx={{maxWidth: "700px"}}>
+    <Box sx={{maxWidth: "700px", marginTop: '0.5rem'}}>
       <Carousel>
       <Carousel.Item>
         <img
@@ -14,8 +14,8 @@ function CarouselComponent() {
           style={{borderRadius: "2ch"}}
         />
         <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          <h3>Nakuru</h3>
+          <p>Our Nakuru offices located in Egerton.</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -27,14 +27,14 @@ function CarouselComponent() {
         />
 
         <Carousel.Caption>
-          <h3>Second slide label</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <h3>Thomas Mumo</h3>
+          <p>Riziki helped me clear my HELB loan and start my business.</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="/images/Three.jpg"
+          src="/images/Third.jpg"
         alt="Third slide"
         style={{borderRadius: "2ch"}}
         />

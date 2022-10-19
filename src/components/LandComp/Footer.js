@@ -11,11 +11,6 @@ Heading,
 const Footer = () => {
 return (
 	<Box>
-	<h1 style={{ color: "white-smoke",
-				textAlign: "center",
-				marginTop: "-50px" }}>
-		RIZIKI LENDERS
-	</h1>
 	<Container>
 		<Row>
 		<Column>

@@ -1,10 +1,16 @@
 import React from 'react'
-import Header from './header'
+import CarouselComponent from './LandComp/Couressel'
+import Footer from './LandComp/Footer'
+import Agents from './Map/Agents'
+
 
 export default function Landing() {
   return (
     <div>
-        <Header></Header>
+     
+       <CarouselComponent />
+       <Agents/>
+       <Footer />
     </div>
   )
 }
