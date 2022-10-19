@@ -1,0 +1,40 @@
+.use{
+    padding: 25px;
+    border-radius: 2ch;
+    background-color: #d1eaec;
+    box-shadow: 1px 1px 1px 1px #0430344d;
+    max-width: 300px;
+    max-height: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition-duration: .3s;
+}
+
+.use:hover{
+    background-color: #043034;
+    color: lightgrey;
+}
+
+.useActive{
+    padding: 25px;
+    border-radius: 2ch;
+    box-shadow: 1px 1px 1px 1px #0430344d;
+    max-width: 300px;
+    max-height: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition-duration: .3s;
+    background-color: #043034;
+    color: lightgrey;
+}
+
+.parent{
+    margin: auto;
+    max-width: 800px;
+    padding: 45px;
+}
+
