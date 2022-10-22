@@ -15,6 +15,7 @@
 .use:hover{
     background-color: #043034;
     color: lightgrey;
+    cursor: pointer;
 }
 
 .useActive{
