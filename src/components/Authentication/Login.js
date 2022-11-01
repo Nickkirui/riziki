@@ -9,6 +9,8 @@ import {InputAdornment} from '@mui/material'
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import {IconButton} from '@mui/material'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import './Login.css';
+import Copyright from '../LandComp/Copyright'
 
 
 function Login() {
@@ -43,9 +45,9 @@ function Login() {
 
     
 
-            <form  onSubmit = {handleLogin}>
+            <form  onSubmit = {handleLogin} className= 'body'>
 
-              <Card sx={{maxWidth: "600px", marginLeft: "auto", marginRight: "auto", marginTop: "25px", backgroundColor: green[600], display: "flex", flexDirection: "column", gap:"10px", padding: "45px"}}>
+              <Card sx={{maxWidth: "600px", marginLeft: "auto", marginRight: "auto", backgroundcolor:green[300], marginTop: "25px", display: "flex", flexDirection: "column", gap:"10px", padding: "45px"}} className='card'>
 
             <CardHeader
             title="Log In"
@@ -67,6 +69,7 @@ function Login() {
 
 
             </form>
+            <Copyright></Copyright>
     
     </>
         

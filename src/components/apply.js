@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
+import {Link, useNavigate} from 'react-router-dom'
 import './apply.css'
-import { Grid } from '@mui/material'
+import { Grid, Button} from '@mui/material'
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import AddHomeWorkIcon from '@mui/icons-material/AddHomeWork';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
@@ -9,6 +10,7 @@ import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+
 
 export default function Apply() {
 
@@ -332,7 +334,7 @@ export default function Apply() {
       <div>
 
       </div>
-
+       <Button variant="contained" color="info" type="submit">SUBMIT</Button>
     </div>
     
     

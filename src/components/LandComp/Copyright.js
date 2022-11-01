@@ -2,11 +2,13 @@ import React from "react";
 import { Box } from "@mui/material";
 import CopyrightIcon from '@mui/icons-material/Copyright';
 
-import React from 'react'
+import './Copyright.css'
 
 function Copyright() {
   return (
-    <div>Copyright</div>
+    <div className="copy">
+     <CopyrightIcon></CopyrightIcon>All Rights reserved 2022
+    </div>
   )
 }
 

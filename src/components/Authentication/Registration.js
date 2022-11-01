@@ -6,6 +6,7 @@ import {useNavigate} from 'react-router-dom'
 
 import { Card, Button, TextField, CardHeader, CardActions } from '@mui/material'
 import { blue } from '@mui/material/colors'
+import Copyright from '../LandComp/Copyright'
 
 
 function Registration() {
@@ -56,6 +57,7 @@ function Registration() {
                 {error && <span>{error}</span>};
                 </Card>
             </form>
+            <Copyright />
     </>
   )
 }
