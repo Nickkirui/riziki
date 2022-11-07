@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material'
+
 import React, {useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import './header2.css'
@@ -48,7 +48,7 @@ function Header2() {
             <button className='navbtn' onClick={() => handleLogout() }><LogoutIcon></LogoutIcon>Log out</button>
           ) : (
             <>
-             <button className='navbtn' onClick={() => navigate('/login') }><LoginIcon></LoginIcon>Log In</button>
+             <button className='navbtn' onClick={() => navigate('/signin') }><LoginIcon></LoginIcon>Log In</button>
              <button className='navbtn' onClick={() => navigate('/registration')}><SensorOccupiedIcon></SensorOccupiedIcon>Sign Up</button>
              </>
           )}
