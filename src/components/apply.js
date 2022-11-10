@@ -10,6 +10,8 @@ import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import { database } from '../global/firebaseCofig';
+import { SettingsInputAntennaTwoTone } from '@mui/icons-material';
 
 
 export default function Apply() {
@@ -21,12 +23,12 @@ export default function Apply() {
   const [selectedFive, setSelectedFive] = useState(false)
   const [selectedSix, setSelectedSix] = useState(false)
 
-  const [divContent, setDivContent] = useState()
-  const [divContenttwo, setDivContenttwo] = useState()
-  const [divContentthree, setDivContentthree] = useState()
-  const [divContentfour, setDivContentfour] = useState()
-  const [divContentfive, setDivContentfive] = useState()
-  const [divContentsix, setDivContentsix] = useState()
+  const [divContent, setDivContent] = useState('')
+  const [divContenttwo, setDivContenttwo] = useState('')
+  const [divContentthree, setDivContentthree] = useState('')
+  const [divContentfour, setDivContentfour] = useState('')
+  const [divContentfive, setDivContentfive] = useState('')
+  const [divContentsix, setDivContentsix] = useState('')
 
 
   const handleOnClick = (e, segment) => {
@@ -56,6 +58,19 @@ export default function Apply() {
         setDivContentsix(e.currentTarget.textContent)
     }
   }
+  const apply = () => {
+    console.log("calls");
+    database.collection('Applications').add({
+      usage : divContent,
+      livinSituation : divContenttwo,
+      relationshipStatus : divContentthree,
+      dependants : divContentfour,
+      employmentStatus : divContentfive,
+      paymentFrequency : divContentsix,
+    }).then(()=> {
+      //setState('')
+    }).catch(err => console.log(err.message))
+}
 
   return (
 
@@ -334,7 +349,7 @@ export default function Apply() {
       <div>
 
       </div>
-       <Button variant="contained" color="info" type="submit">SUBMIT</Button>
+       <Button variant="contained" color="info" type="submit" onClick = {apply} >NEXT</Button>
     </div>
     
     

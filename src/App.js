@@ -14,7 +14,7 @@ import LoanBalance from './components/HomePages/LoanBalance';
 import MyAccount from './components/HomePages/MyAccount';
 import Repayment from './components/HomePages/Repayment';
 import MyLoans from './components/HomePages/MyLoans';
-
+import Input from './components/Map/Input';
 
 
 function App() {
@@ -38,6 +38,7 @@ function App() {
           <Route path = '/repayment' element ={<Repayment/>}/>
           <Route path = '/myloans' element ={<MyLoans/>}/>
           <Route path = '/homepage' element ={<Homepage/>}/>
+          <Route path = '/input' element ={<Input/>}/>
 
         </Routes>
 
