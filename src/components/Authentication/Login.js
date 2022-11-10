@@ -14,6 +14,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {useNavigate} from 'react-router-dom'
 import {auth} from '../../global/firebaseCofig'
+import { useDispatch } from 'react-redux';
+import {getUser} from '../../slices/userSlice';
 
 
 function Copyright(props) {
@@ -35,6 +37,9 @@ export default function SignIn() {
 
   const emailRef = useRef()
   const passwordRef = useRef()
+
+  const dispatch = useDispatch()
+
   
   let navigate = useNavigate() 
 
@@ -42,12 +47,14 @@ export default function SignIn() {
     event.preventDefault();
     
     auth.signInWithEmailAndPassword(emailRef.current.value, passwordRef.current.value)
-     .then(() => {
-       
+     .then((user) => {
+       dispatch(getUser(user.user))
+       localStorage.setItem("user", user.user.email)
        navigate('/homepage')
              
       }).catch((err => console.log(err.message) ))
     }
+
   
 
   return (

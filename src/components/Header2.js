@@ -7,8 +7,20 @@ import LoginIcon from '@mui/icons-material/Login'
 import LogoutIcon from '@mui/icons-material/Logout';
 import SensorOccupiedIcon from '@mui/icons-material/SensorOccupied'
 import {auth} from '../global/firebaseCofig'
+import { useSelector } from 'react-redux'
+import { getUser } from '../slices/userSlice'
+
+const nullValues = ["null", null, undefined]
 
 function Header2() {
+
+  const user = useSelector((state) => state.user.user.email)
+  const [userName, setUserName] = useState('')
+
+  const getUser = () => {
+    setUserName(!nullValues.includes(user) ? user.split('@')[0] : "")
+    console.log(userName)
+  }
 
   let navigate = useNavigate()
 
@@ -26,6 +38,10 @@ function Header2() {
   }, [])
   //console.log(currentuser);
 
+  useEffect(() => {
+    getUser()
+  }, [user])
+
   const handleLogout =() => {
     auth.signOut()
     .then(()=>{
@@ -36,10 +52,12 @@ function Header2() {
     })
   }
 
+
   return (
     <>
      <div className='navbar'>
      <img width={'100px'} src="images\RIZIKI.png" alt="" className='navbarimg'/>
+     <h5>{userName}</h5>
         {/* <Typography variant='body1' style = {{cursor: 'pointer', paddingTop: '1.5rem'}}> Riziki </Typography> */}
         <div className='navitems'>
           <button className='navbtn' onClick={() => navigate('/')} icon > <HomeIcon></HomeIcon> Home</button>

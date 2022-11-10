@@ -15,9 +15,11 @@ import MyAccount from './components/HomePages/MyAccount';
 import Repayment from './components/HomePages/Repayment';
 import MyLoans from './components/HomePages/MyLoans';
 import Input from './components/Map/Input';
+import { useEffect } from 'react';
 
 
 function App() {
+
   return (
     <>
     {/* <Header/> */}
