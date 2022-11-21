@@ -73,7 +73,7 @@ let navigate = useNavigate()
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 1,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -143,12 +143,6 @@ let navigate = useNavigate()
                   id="IDNumber"
                   autoComplete="ID Number"
                   inputRef={idnumberRef}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
                 />
               </Grid>
             </Grid>

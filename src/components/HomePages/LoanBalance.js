@@ -1,7 +1,9 @@
 import React from 'react'
 
-export default function LoanBalance() {
+function LoanBalance() {
   return (
     <div>LoanBalance</div>
   )
 }
+
+export default LoanBalance

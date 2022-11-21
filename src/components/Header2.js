@@ -57,7 +57,7 @@ function Header2() {
     <>
      <div className='navbar'>
      <img width={'100px'} src="images\RIZIKI.png" alt="" className='navbarimg'/>
-     <h5>{userName}</h5>
+     <h5 className='h5'>{userName}</h5>
         {/* <Typography variant='body1' style = {{cursor: 'pointer', paddingTop: '1.5rem'}}> Riziki </Typography> */}
         <div className='navitems'>
           <button className='navbtn' onClick={() => navigate('/')} icon > <HomeIcon></HomeIcon> Home</button>

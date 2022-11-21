@@ -5,7 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import Registration from './components/Authentication/Registration';
 
 import Landing from './components/Landing';
-import Application from './components/Application';
+// import Application from './components/Application';
 import Review from './components/Review';
 import Header2 from './components/Header2'
 import Apply from './components/apply';
@@ -15,14 +15,16 @@ import MyAccount from './components/HomePages/MyAccount';
 import Repayment from './components/HomePages/Repayment';
 import MyLoans from './components/HomePages/MyLoans';
 import Input from './components/Map/Input';
-import { useEffect } from 'react';
-
+import Admin from './components/Admin/Admin';
+import ForgotPassword from './components/Authentication/Password';
+import Applications from './components/Map/Applications'
 
 function App() {
 
+ 
+
   return (
     <>
-    {/* <Header/> */}
     <Header2/>
     
         <div className="App">
@@ -32,7 +34,7 @@ function App() {
           <Route path = '/signin' element  ={ <SignIn /> } />
           <Route path = '/registration' element = { <Registration />} />
          {/* <Route path = '/homepage' element ={<HomePage/>}/> */}
-          <Route path = '/application' element ={<Application/>}/>
+          {/* <Route path = '/application' element ={<Application/>}/> */}
           <Route path = '/review' element ={<Review/>}/>
           <Route path = '/apply' element ={<Apply/>}/>
           <Route path = '/loanbalance' element ={<LoanBalance/>}/>
@@ -41,6 +43,9 @@ function App() {
           <Route path = '/myloans' element ={<MyLoans/>}/>
           <Route path = '/homepage' element ={<Homepage/>}/>
           <Route path = '/input' element ={<Input/>}/>
+          <Route path = '/admin' element ={<Admin/>}/>
+          <Route path = '/Forgotpassword' element ={<ForgotPassword/>}/>
+          <Route path = '/applications' element ={<Applications/>}/>
 
         </Routes>
 

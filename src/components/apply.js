@@ -16,6 +16,9 @@ import { SettingsInputAntennaTwoTone } from '@mui/icons-material';
 
 export default function Apply() {
 
+  
+let navigate = useNavigate() 
+  
   const [selected, setSelected] = useState(false)
   const [selectedtwo, setSelectedtwo] = useState(false)
   const [selectedthree, setSelectedthree] = useState(false)
@@ -29,7 +32,6 @@ export default function Apply() {
   const [divContentfour, setDivContentfour] = useState('')
   const [divContentfive, setDivContentfive] = useState('')
   const [divContentsix, setDivContentsix] = useState('')
-
 
   const handleOnClick = (e, segment) => {
     console.log(e.currentTarget.textContent)
@@ -69,8 +71,10 @@ export default function Apply() {
       paymentFrequency : divContentsix,
     }).then(()=> {
       //setState('')
+      navigate('/input')
     }).catch(err => console.log(err.message))
 }
+  
 
   return (
 

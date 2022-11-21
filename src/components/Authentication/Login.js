@@ -5,17 +5,18 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
+
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {useNavigate} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import {auth} from '../../global/firebaseCofig'
 import { useDispatch } from 'react-redux';
 import {getUser} from '../../slices/userSlice';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 function Copyright(props) {
@@ -46,18 +47,27 @@ export default function SignIn() {
   const handleSubmit = (event) => {
     event.preventDefault();
     
-    auth.signInWithEmailAndPassword(emailRef.current.value, passwordRef.current.value)
-     .then((user) => {
-       dispatch(getUser(user.user))
-       localStorage.setItem("user", user.user.email)
-       navigate('/homepage')
+    if(emailRef.current.value === 'admin@admin.com' && passwordRef.current.value === 'admin123'){
+      navigate('/admin')
+    }
+    else{
+      auth.signInWithEmailAndPassword(emailRef.current.value, passwordRef.current.value)
+      .then((user) => {
+        dispatch(getUser(user.user))
+        localStorage.setItem("user", user.user.email)
+        navigate('/homepage')
              
-      }).catch((err => console.log(err.message) ))
+        })
+       .then(() => {
+          toast.success("login success")}).catch((err => console.log(err.message) ))
+    }
     }
 
   
 
   return (
+    <>
+    <Toaster/>
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -116,9 +126,7 @@ export default function SignIn() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
+              <p>Don't have an account? <Link to = '/registration'>Sign Up</Link></p>
               </Grid>
             </Grid>
           </Box>
@@ -126,6 +134,7 @@ export default function SignIn() {
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
+    </>
   );
 }
 
