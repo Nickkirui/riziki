@@ -24,7 +24,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import { collection, onSnapshot } from 'firebase/firestore';
 import {database } from '../../global/firebaseCofig'
-import { createTheme, Paper, Table, TableBody, TableCell, tableCellClasses, TableContainer, TableHead, TableRow } from '@mui/material';
+import { createTheme, Paper, Table, TableBody, TableCell, tableCellClasses, TableContainer, TableHead, TableRow, Tooltip } from '@mui/material';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CancelIcon from '@mui/icons-material/Cancel';
 
  
 const drawerWidth = 240;
@@ -285,6 +287,8 @@ export default function Admin() {
         <Table sx = {{minWidth: 450 }} aria-label="simple table">
           <TableHead sx= {{backgroundColor: 'lightblue'}}>
             <TableRow>
+              <StyledTableCell>applicant id</StyledTableCell>
+              <StyledTableCell>applicant email</StyledTableCell>
               <StyledTableCell>Usage</StyledTableCell>
               <StyledTableCell>Relationship Status</StyledTableCell>
               <StyledTableCell>Payment Frequency</StyledTableCell>
@@ -299,6 +303,8 @@ export default function Admin() {
              {applications.map((application) => (
               <TableRow key = {application.ApplicationId} 
               sx = {{'&:last-child td, &:last-child th': {  border: 0 },  minHeight: '2rem'}}>
+                <TableCell >{application.userId}</TableCell>
+                <TableCell >{application.email}</TableCell>
                 <TableCell component="th" scope="row">
                 {application.usage} 
                 </TableCell>
@@ -308,9 +314,20 @@ export default function Admin() {
                 <TableCell >{application.employmentStatus}</TableCell>
                 <TableCell >{application.dependants}</TableCell>
                 <TableCell >
-                  <IconButton >
-                      <DeleteIcon />
+                  <Box sx={{display: 'flex'}}>
+                    <Tooltip title='accept loan application'>
+                    <IconButton color='success'>
+                      <CheckCircleIcon />
                   </IconButton>
+                    </Tooltip>
+  
+                  <Tooltip title='decline loan application'>
+                  <IconButton color='error'>
+                  <CancelIcon />
+                  </IconButton>
+                  </Tooltip>
+    
+                  </Box>
                 </TableCell>
               </TableRow>
             ))} 

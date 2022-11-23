@@ -12,6 +12,7 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { database } from '../global/firebaseCofig';
 import { SettingsInputAntennaTwoTone } from '@mui/icons-material';
+import { useSelector } from 'react-redux';
 
 
 export default function Apply() {
@@ -32,6 +33,9 @@ let navigate = useNavigate()
   const [divContentfour, setDivContentfour] = useState('')
   const [divContentfive, setDivContentfive] = useState('')
   const [divContentsix, setDivContentsix] = useState('')
+
+  const user = useSelector((state) => state.user.user)
+  console.log(user)
 
   const handleOnClick = (e, segment) => {
     console.log(e.currentTarget.textContent)
@@ -69,6 +73,8 @@ let navigate = useNavigate()
       dependants : divContentfour,
       employmentStatus : divContentfive,
       paymentFrequency : divContentsix,
+      userId: user.uid,
+      email: user.email
     }).then(()=> {
       //setState('')
       navigate('/input')
