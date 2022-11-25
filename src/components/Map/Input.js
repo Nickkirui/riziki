@@ -3,67 +3,137 @@ import React from "react";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import {storage} from '../../global/firebaseCofig'
 import './Input.css'
-import Button from '@mui/material/Button';
-
+import {Paper, Typography, Box, Button, Chip} from "@mui/material";
+import DragDrop from "./Drag";
 function Input() {
   const [progress, setProgress] = useState(0);
-  const formHandler = (e) => {
-    e.preventDefault();
-    const file = e.target[0].files[0];
-    uploadFiles(file);
+  const [mpesafile, setmpesaFile] = useState(null)
+  const [bankfile, setbankFile] = useState(null)
+
+
+  const uploadmpesaFiles = () => {
+    //
+    if(mpesafile){
+      const sotrageRef = ref(storage, `mpesafiles/${mpesafile.name}`);
+      const uploadTask = uploadBytesResumable(sotrageRef, mpesafile);
+  
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const prog = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+          setProgress(prog);
+        },
+        (error) => console.log(error),
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            console.log("File available at", downloadURL);
+          });
+        }
+      );
+    }
+
   };
 
-  const uploadFiles = (file) => {
+  const uploadbankFiles = () => {
     //
-    if (!file) return;
-    const sotrageRef = ref(storage, `files/${file.name}`);
-    const uploadTask = uploadBytesResumable(sotrageRef, file);
+    if(bankfile){
+      const sotrageRef = ref(storage, `bankfiles/${bankfile.name}`);
+      const uploadTask = uploadBytesResumable(sotrageRef, bankfile);
+  
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const prog = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+          setProgress(prog);
+        },
+        (error) => console.log(error),
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            console.log("File available at", downloadURL);
+          });
+        }
+      );
+    }
 
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const prog = Math.round(
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        );
-        setProgress(prog);
-      },
-      (error) => console.log(error),
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          console.log("File available at", downloadURL);
-        });
-      }
-    );
   };
 
   return (
-    <div className="App">
-      <h4>Upload your Bank statements from the last 6 months</h4>
-      
-      <form onSubmit={formHandler}>
-        <input type="file" className="input" />
-        <Button type="submit" variant="contained"
-              sx={{ mt: 3, mb: 2 }}>Upload</Button>
-      </form>
-      <hr />
-      <h2>Uploading done {progress}%</h2>
-      <h4>Upload your Mpesa statements from the last 6 months</h4>
-      
-      <form onSubmit={formHandler}>
-        <input type="file" className="input" />
-        <Button type="submit" variant="contained"
-              sx={{ mt: 3, mb: 2 }}>Upload</Button>
-      </form>
-      <hr />
-      <h2>Uploading done {progress}%</h2>
-      <Button
-              type="submit"
-              
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+    <div>
+      <Paper elevation={24}
+            sx={{
+              padding: "25px",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              borderRadius: "2ch",
+              gap: "8px",
+              width: "85%",
+            }}
+
+            // onMouseOver={() => setElevation(24)}
+            // onMouseOut={() => setElevation(4)}
+          >
+            <Typography sx={{ fontWeight: "bold" }}>
+              mpesa
+            </Typography>
+            <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+              <img src="/assets/addfile.png" alt="" width={100} />
+              {/* <img src="/assets/pdfimage.png" alt="" width={200} /> */}
+
+              <Typography></Typography>
+            </Box>
+            <DragDrop {...{ file: mpesafile, setFile: setmpesaFile }}></DragDrop>
+            <Box
+              sx={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "space-around",
+              }}
             >
-              SUBMIT
-            </Button>
+              <Chip label="submission pending"></Chip>
+              <Button variant="contained" onClick={() => uploadmpesaFiles()}>Upload</Button>
+            </Box>
+          </Paper>
+
+          <Paper elevation={24}
+            sx={{
+              padding: "25px",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              borderRadius: "2ch",
+              gap: "8px",
+              width: "85%",
+            }}
+
+            // onMouseOver={() => setElevation(24)}
+            // onMouseOut={() => setElevation(4)}
+          >
+            <Typography sx={{ fontWeight: "bold" }}>
+              bank
+            </Typography>
+            <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+              <img src="/assets/addfile.png" alt="" width={100} />
+              {/* <img src="/assets/pdfimage.png" alt="" width={200} /> */}
+
+              <Typography></Typography>
+            </Box>
+            <DragDrop {...{ file: bankfile, setFile: setbankFile }}></DragDrop>
+            <Box
+              sx={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "space-around",
+              }}
+            >
+              <Chip label="submission pending"></Chip>
+              <Button variant="contained" onClick={() => uploadbankFiles()}>Upload</Button>
+            </Box>
+          </Paper>
     </div>
   );
 }

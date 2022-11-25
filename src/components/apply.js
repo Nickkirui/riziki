@@ -74,7 +74,11 @@ let navigate = useNavigate()
       employmentStatus : divContentfive,
       paymentFrequency : divContentsix,
       userId: user.uid,
-      email: user.email
+      email: user.email,
+      fileUrl: {
+              mpesa: null,
+              bank: null
+            }
     }).then(()=> {
       //setState('')
       navigate('/input')
