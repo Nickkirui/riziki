@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Link, useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import './apply.css'
 import { Grid, Button} from '@mui/material'
 import ReceiptIcon from '@mui/icons-material/Receipt';
@@ -11,7 +11,6 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { database } from '../global/firebaseCofig';
-import { SettingsInputAntennaTwoTone } from '@mui/icons-material';
 import { useSelector } from 'react-redux';
 
 

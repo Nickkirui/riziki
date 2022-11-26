@@ -78,7 +78,7 @@ function Input() {
             // onMouseOut={() => setElevation(4)}
           >
             <Typography sx={{ fontWeight: "bold" }}>
-              mpesa
+              Upload your Mpesa statements for the last 6 Months
             </Typography>
             <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
               <img src="/assets/addfile.png" alt="" width={100} />
@@ -114,7 +114,7 @@ function Input() {
             // onMouseOut={() => setElevation(4)}
           >
             <Typography sx={{ fontWeight: "bold" }}>
-              bank
+              Upload your bank statements for the last 6 months
             </Typography>
             <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
               <img src="/assets/addfile.png" alt="" width={100} />
