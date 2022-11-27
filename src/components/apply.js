@@ -10,7 +10,7 @@ import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import { database } from '../global/firebaseCofig';
+import { database, auth } from '../global/firebaseCofig';
 import { useSelector } from 'react-redux';
 
 
@@ -65,23 +65,28 @@ let navigate = useNavigate()
   }
   const apply = () => {
     console.log("calls");
-    database.collection('Applications').add({
-      usage : divContent,
-      livinSituation : divContenttwo,
-      relationshipStatus : divContentthree,
-      dependants : divContentfour,
-      employmentStatus : divContentfive,
-      paymentFrequency : divContentsix,
-      userId: user.uid,
-      email: user.email,
-      fileUrl: {
-              mpesa: null,
-              bank: null
-            }
-    }).then(()=> {
-      //setState('')
-      navigate('/input')
-    }).catch(err => console.log(err.message))
+    auth.onAuthStateChanged(user => {
+      if(user){
+        database.collection('Applications').add({
+          usage : divContent,
+          livinSituation : divContenttwo,
+          relationshipStatus : divContentthree,
+          dependants : divContentfour,
+          employmentStatus : divContentfive,
+          paymentFrequency : divContentsix,
+          userId: user.uid,
+          email: user.email,
+          fileUrl: {
+                  mpesa: null,
+                  bank: null
+                }
+        }).then(()=> {
+          //setState('')
+          navigate('/input')
+        }).catch(err => console.log(err.message))
+      }
+    })
+  
 }
   
 

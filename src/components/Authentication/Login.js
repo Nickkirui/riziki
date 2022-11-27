@@ -54,12 +54,12 @@ export default function SignIn() {
       auth.signInWithEmailAndPassword(emailRef.current.value, passwordRef.current.value)
       .then((user) => {
         dispatch(getUser(user.user))
-        localStorage.setItem("user", user.user.email)
+        localStorage.setItem("user", user.user.uid)
         navigate('/homepage')
              
         })
        .then(() => {
-          toast.success("login success")}).catch((err => console.log(err.message) ))
+          toast.success("login success")}).catch((err => toast.error(err.message) ))
     }
     }
 

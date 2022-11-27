@@ -27,7 +27,10 @@ import {database } from '../../global/firebaseCofig'
 import { createTheme, Paper, Table, TableBody, TableCell, tableCellClasses, TableContainer, TableHead, TableRow, Tooltip } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
-
+import {useSelector} from 'react-redux'
+import toast from 'react-hot-toast';
+import AddLoan from '../Map/Applications';
+import Applications from '../Map/Applications'
  
 const drawerWidth = 240;
 const theme = createTheme()
@@ -89,6 +92,8 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 export default function Admin() {
 
+  const user = useSelector((state) => state.user.user) 
+
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -107,10 +112,13 @@ export default function Admin() {
   const [viewapplications, setViewApplications] = useState(false) //displaying the item if it is true
   const [ applications, setApplications ] = useState([]) //contains the data
 
+  const [viewloanproducts, setViewloanproducts]  = useState(false)
+
 //get users function
   const handleViewUsers = () => {
     setViewUsers(true)
     setViewApplications(false)
+    setViewloanproducts(false)
     onSnapshot( collection(database, "Users"), (snapshot) => {
       setUsers(snapshot.docs.map(doc => ({...doc.data(), UserId: doc.id  })))
       
@@ -120,15 +128,44 @@ export default function Admin() {
   const handleViewApplications = () => {
     setViewApplications(true)
     setViewUsers(false)
+    setViewloanproducts(false)
     onSnapshot( collection(database, "Applications"), (snapshot) => {
       setApplications(snapshot.docs.map(doc => ({...doc.data(), ApplicationId: doc.id  })))
       
     })
   }
+  //console.log(applications)
 
-  console.log(applications)
+  const handleViewLoanProducts = () => {
+    setViewApplications(false)
+    setViewUsers(false)
+    setViewloanproducts(true)
+  }
 
-  // console.log(users)
+  let Word;
+  const handleAcept = (application) => {
+    //console.log(application)
+    if(user!==null){
+      Word = application
+      Word['Status'] = 'Accepted'
+      database.collection('Applications').doc(application.ApplicationId).set(Word).then(() => {
+        console.log('Approved')
+        toast.success('This loan has been accepted')
+      })
+    }
+  }
+
+  const handleReject = (application) => {
+    //console.log(application)
+    if(user!==null){
+      Word = application
+      Word['Status'] = 'Declined'
+      database.collection('Applications').doc(application.ApplicationId).set(Word).then(() => {
+        // console.log('Declined')
+        toast.success('This loan has been declined')
+      })
+    }
+  }
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -179,7 +216,7 @@ export default function Admin() {
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemButton >
+              <ListItemButton onClick = {handleViewLoanProducts}>
                 <ListItemIcon>
                   <PersonIcon />
                 </ListItemIcon>
@@ -316,13 +353,13 @@ export default function Admin() {
                 <TableCell >
                   <Box sx={{display: 'flex'}}>
                     <Tooltip title='accept loan application'>
-                    <IconButton color='success'>
+                    <IconButton color='success' onClick={() => handleAcept(application) }>
                       <CheckCircleIcon />
                   </IconButton>
                     </Tooltip>
   
                   <Tooltip title='decline loan application'>
-                  <IconButton color='error'>
+                  <IconButton color='error' onClick={() => handleReject(application) }>
                   <CancelIcon />
                   </IconButton>
                   </Tooltip>
@@ -344,6 +381,8 @@ export default function Admin() {
           </TableContainer>
        </>}
 
+       {viewloanproducts && <Applications/>}
+ 
       </Main>
     </Box>
   );

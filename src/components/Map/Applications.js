@@ -1,84 +1,118 @@
 
-import React , {useState} from 'react'
+import  React, {useRef} from 'react';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { database, auth } from '../../global/firebaseCofig'
+import toast from 'react-hot-toast';
 
-import {Link, useNavigate} from 'react-router-dom'
 
-import { Card, Button, TextField, CardHeader } from '@mui/material'
+const theme = createTheme();
 
-import { green } from '@mui/material/colors'
-;
-import Copyright from '../LandComp/Copyright'
+export default function AddLoan() {
 
+  const loanRef = useRef()
+  const interestRef = useRef()
+  const durationRef = useRef()
 
-function Applications() {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    auth.onAuthStateChanged(user => {
+      if(user){
+        database.collection('LoanProducts').add({
+          Loan: loanRef.current.value,
+          interest : interestRef.current.value,
+          duration : durationRef.current.value,
+          
+        }).then(()=> {
+          
+      toast.success('Loan added')
+        }).catch(err => console.log(err.message))
+      }
+    })
+  };
 
-  // let navigate = useNavigate()
-
-
-  // const [DateofBirth, setDateofBirth ] = useState(' ')
-  // const [PlaceofBirth, setPlaceofBirth ] = useState(' ')
-  // const [Residency, setResidency ] = useState(' ')
-  // const [RelationshipStatus, setRelationshipStatus ] = useState(' ')
-  // const [Dependants, setDependants ] = useState(' ')
-  // const [EmploymentStatus, setEmploymentStatus ] = useState(' ')
-  // const [PaymentFrequency, setPaymentFrequency] = useState(' ')
-  // const [PaymentMethod, setPaymentMethod = useState(' ')
-
-  
-    
- 
-  //   .then(() => {
-  //     setDateofBirth('')
-  //     setPlaceofBirth('')
-  //     setResidency('')
-  //     setRelationshipStatus('')
-  //     setDependants('')
-  //     setEmploymentStatus('')
-  //     setPaymentFrequency('')
-  //     navigate('/input')
-   
-
-  
   return (
-
-
-    <>
-
-    
-
-            <form   className= 'body' autoComplete='on'>
-
-              <Card sx={{maxWidth: "600px", marginLeft: "auto", marginRight: "auto", backgroundcolor:green[300], marginTop: "25px", display: "flex", flexDirection: "column", gap:"10px", padding: "45px"}} className='card'>
-              
-            <CardHeader
-            title="Log In"
-            
+    <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          
+          <Typography component="h1" variant="h5">
+           Add Loan Product 
+          </Typography>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="Loan"
+              label="Loan Amount"
+              name="loan"
+              autoComplete="amount"
+              autoFocus
+              inputRef={loanRef}
             />
-
-              <TextField variant='outlined' label="Date of Birth" ></TextField>
-              <TextField variant='outlined' label="Place of Birth" ></TextField>
-              <TextField variant='outlined' label="Residency" ></TextField>
-              <TextField variant='outlined' label="Relationship Status" ></TextField>
-              <TextField variant='outlined' label="Dependants" ></TextField>
-              <TextField variant='outlined' label="Employment Status"></TextField>
-              <TextField variant='outlined' label="Payment Frequency" ></TextField>
-              <TextField variant='outlined' label="Payment Method" ></TextField>
-              <Button variant="contained" color="info" type="submit">Login</Button>
-              
-              </Card>
-
-
-
-            </form>
-            <Copyright></Copyright>
-    
-    </>
-        
-        
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="interest"
+              label="Interest Rate"
+              type="text"
+              id="interest "
+              autoComplete="interest"
+              inputRef={interestRef}
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="duration"
+              label="Duration"
+              type="text"
+              id="duration "
+              autoComplete="duration"
+              inputRef={durationRef}
+            />
+            
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              ADD
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                
+              </Grid>
+              <Grid item>
+                
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
        
-
-    
-  )
+      </Container>
+    </ThemeProvider>
+  );
 }
-
-export default Applications;

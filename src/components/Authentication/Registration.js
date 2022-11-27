@@ -16,6 +16,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import {auth, database} from '../../global/firebaseCofig'
 import {useNavigate} from 'react-router-dom'
+import toast from 'react-hot-toast';
 
 function Copyright(props) {
 
@@ -60,10 +61,11 @@ let navigate = useNavigate()
                
             })
             .then(() => {
-                navigate('/login')
+                navigate('/signin')
+                toast.success('Signup success')
 
-            }).catch(err => console.log(err.message))
-        })
+            }).catch((err => toast.error(err.message)))
+        }).catch((err => toast.error(err.message)))
 
  };
 

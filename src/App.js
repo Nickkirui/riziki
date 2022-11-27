@@ -18,6 +18,7 @@ import Input from './components/Map/Input';
 import Admin from './components/Admin/Admin';
 import ForgotPassword from './components/Authentication/Password';
 import Applications from './components/Map/Applications'
+import { Toaster } from 'react-hot-toast';
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
 
   return (
     <>
+    <Toaster />
     <Header2/>
     
         <div className="App">
