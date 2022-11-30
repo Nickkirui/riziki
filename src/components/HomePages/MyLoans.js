@@ -1,4 +1,4 @@
-import { Button, Card, CardActions, CardContent, Grid, Typography } from '@mui/material'
+import { Button, Card, CardActions, CardContent, Grid, Typography, Chip, Stack, Box } from '@mui/material'
 import React, { useState } from 'react'
 import './myloans.css'
 import { useNavigate } from 'react-router-dom'
@@ -16,14 +16,11 @@ export default function MyLoans() {
   })
 
   return (
-   < >
-   <div className='loanparent'>
-   
-      <Grid container spacing={{ xs: 2, md: 3}} columns={{ xs: 4, sm: 8, md: 12 }} sx={{padding: "50px"}}>
+   <Box sx={{display: 'flex', justifyContent: 'center', margin:'auto', maxWidth: '1800px'}}>
+      <Grid container spacing={{ xs: 2, md: 3}} columns={{ xs: 2, sm: 2, md: 12}} sx={{padding: "50px", maxWidth: '100%', margin: 'auto'}}>
       {LoanProducts.map((loan) => (
-        <Grid item xs={2} sm={4} md={4}>
+        <Grid item xs={2} sm={4} md={4} sx={{maxWidth: '100px'}}>
           
-          <div className='loangrid'>
             <Card key = {loan.LoanId}  sx={{':hover': {
                   backgroundColor: '#043034', 
                   color: 'lightgrey',
@@ -31,32 +28,30 @@ export default function MyLoans() {
                 },
               }}>
               <CardContent>
-                <h5>
-                  The amount is: 
+                <Stack spacing={1}>
+                <Chip label={`Kes. ${loan.Loan}`} color='success' variant='contained'>
                   {loan.Loan}
-                </h5>
-                <h6>
-                  The interest rate is:
-                 {loan.interest}
-                </h6>
-                <h6>
-                  The duration is:
+                </Chip>
+                <Typography variant='h6' sx={{color: 'orange'}}>
+                {`+${loan.interest}`}
+                </Typography>
+                </Stack>
+   
+                <Typography variant='h7'>
                  {loan.duration}
-                </h6>
+                </Typography>
 
               </CardContent>
-              <CardActions>
-                <Button variant = 'contained' color='success' onClick={()=> navigate('/apply')}
+              <CardActions sx={{display: 'flex', justifyContent: 'center'}}>
+                <Button variant = 'contained' color='info' onClick={()=> navigate('/apply')}
                 >Apply</Button>
               </CardActions>
 
             </Card>
-            </div>
         </Grid>
         ))}
     </Grid>
     
-     </div>
-   </>
+       </Box>
   )
 }
