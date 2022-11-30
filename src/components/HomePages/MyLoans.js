@@ -1,29 +1,30 @@
 import { Button, Card, CardActions, CardContent, Grid, Typography } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 import './myloans.css'
 import { useNavigate } from 'react-router-dom'
+import { collection, onSnapshot } from 'firebase/firestore'
+import { database } from '../../global/firebaseCofig'
 
 export default function MyLoans() {
 
   let navigate = useNavigate()
 
-  const loans = [
-    {id: 1, amount: '3000', interest: '2%'},
-    {id: 2, amount: '5000', interest: '4%'},
-    {id: 3, amount: '10000', interest: '7%'},
-    {id: 4, amount: '20000', interest: '10%'},
-  ]
+  const [LoanProducts, setLoanProducts] = useState ([])
+
+  onSnapshot( collection(database, "LoanProducts"), (snapshot) => {
+    setLoanProducts(snapshot.docs.map(doc => ({...doc.data(), LoanId: doc.id  })))
+  })
 
   return (
    < >
    <div className='loanparent'>
    
       <Grid container spacing={{ xs: 2, md: 3}} columns={{ xs: 4, sm: 8, md: 12 }} sx={{padding: "50px"}}>
-      {loans.map((loan) => (
+      {LoanProducts.map((loan) => (
         <Grid item xs={2} sm={4} md={4}>
           
           <div className='loangrid'>
-            <Card key = {loan.id}  sx={{':hover': {
+            <Card key = {loan.LoanId}  sx={{':hover': {
                   backgroundColor: '#043034', 
                   color: 'lightgrey',
                   cursor: 'pointer',
@@ -32,11 +33,15 @@ export default function MyLoans() {
               <CardContent>
                 <h5>
                   The amount is: 
-                  {loan.amount}
+                  {loan.Loan}
                 </h5>
                 <h6>
                   The interest rate is:
                  {loan.interest}
+                </h6>
+                <h6>
+                  The duration is:
+                 {loan.duration}
                 </h6>
 
               </CardContent>

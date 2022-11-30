@@ -5,12 +5,18 @@ import {storage} from '../../global/firebaseCofig'
 import './Input.css'
 import {Paper, Typography, Box, Button, Chip} from "@mui/material";
 import DragDrop from "./Drag";
+import { useNavigate } from "react-router-dom";
+
+
+
+
 function Input() {
   const [progress, setProgress] = useState(0);
   const [mpesafile, setmpesaFile] = useState(null)
   const [bankfile, setbankFile] = useState(null)
-
-
+ 
+  const navigate = useNavigate()
+ 
   const uploadmpesaFiles = () => {
     //
     if(mpesafile){
@@ -48,7 +54,8 @@ function Input() {
           const prog = Math.round(
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100
           );
-          setProgress(prog);
+          setProgress(prog); 
+          navigate('/review')
         },
         (error) => console.log(error),
         () => {

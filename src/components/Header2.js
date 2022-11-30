@@ -9,6 +9,7 @@ import SensorOccupiedIcon from '@mui/icons-material/SensorOccupied'
 import {auth} from '../global/firebaseCofig'
 import { useSelector } from 'react-redux'
 import { getUser } from '../slices/userSlice'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const nullValues = ["null", null, undefined]
 

@@ -27,6 +27,7 @@ export default function AddLoan() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log('clicked')
     auth.onAuthStateChanged(user => {
       if(user){
         database.collection('LoanProducts').add({
@@ -35,8 +36,7 @@ export default function AddLoan() {
           duration : durationRef.current.value,
           
         }).then(()=> {
-          
-      toast.success('Loan added')
+          toast.success('Loan added')
         }).catch(err => console.log(err.message))
       }
     })
@@ -103,9 +103,6 @@ export default function AddLoan() {
             </Button>
             <Grid container>
               <Grid item xs>
-                
-              </Grid>
-              <Grid item>
                 
               </Grid>
             </Grid>

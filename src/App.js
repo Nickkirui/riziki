@@ -19,13 +19,26 @@ import Admin from './components/Admin/Admin';
 import ForgotPassword from './components/Authentication/Password';
 import Applications from './components/Map/Applications'
 import { Toaster } from 'react-hot-toast';
+import PrivateLoggedInRoutes from './components/ProtectedRoutes/PrivateLoggedInRoutes';
+import PrivateLoggedOutRoutes from './components/ProtectedRoutes/PrivateLoggedOutRoutes';
+import { createTheme, ThemeProvider } from '@mui/material';
+
+
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#043034'
+    }
+  }
+})
 
 function App() {
 
  
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
     <Toaster />
     <Header2/>
     
@@ -34,7 +47,7 @@ function App() {
         <Routes>
           <Route exact path ='/' element = { <Landing /> } />
           <Route path = '/signin' element  ={ <SignIn /> } />
-          <Route path = '/registration' element = { <Registration />} />
+          <Route path = '/registration' element = { <PrivateLoggedInRoutes><Registration /></PrivateLoggedInRoutes>} />
          {/* <Route path = '/homepage' element ={<HomePage/>}/> */}
           {/* <Route path = '/application' element ={<Application/>}/> */}
           <Route path = '/review' element ={<Review/>}/>
@@ -53,7 +66,7 @@ function App() {
 
         </div>
     
-    </>
+    </ThemeProvider>
 
   );
 }

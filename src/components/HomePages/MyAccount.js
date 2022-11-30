@@ -1,81 +1,332 @@
-import * as React from 'react';
+import React, {useEffect, useState} from 'react'
+import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import MuiDrawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
+import MuiAppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import IconButton from '@mui/material/IconButton';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import { ListItemButton, ListItemIcon, ListItemText, tableCellClasses, TextField } from '@mui/material';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import LogoutIcon from '@mui/icons-material/Logout';
+// import { auth, database } from '../config/firebaseConfig'
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import ReceiptIcon from '@mui/icons-material/Receipt';
+import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Tooltip } from '@mui/material';
 
-export default function MyAcount() {
-  const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  });
+const drawerWidth = 240;
 
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== 'open',
+})(({ theme, open }) => ({
+  zIndex: theme.zIndex.drawer + 1,
+  transition: theme.transitions.create(['width', 'margin'], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  }),
+}));
 
-    setState({ ...state, [anchor]: open });
+const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
+  ({ theme, open }) => ({
+    '& .MuiDrawer-paper': {
+      position: 'relative',
+      whiteSpace: 'nowrap',
+      width: drawerWidth,
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+      boxSizing: 'border-box',
+      ...(!open && {
+        overflowX: 'hidden',
+        transition: theme.transitions.create('width', {
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.leavingScreen,
+        }),
+        width: theme.spacing(7),
+        [theme.breakpoints.up('sm')]: {
+          width: theme.spacing(9),
+        },
+      }),
+    },
+  }),
+);
+
+const StyledTableCell = styled(TableCell)(({theme}) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.info.dark,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 12,
+  },
+}))
+
+const mdTheme = createTheme();
+
+export default function Account({uid, currentUser }) {
+
+  let navigate = useNavigate()
+
+  const [open, setOpen] = React.useState(true);
+  const toggleDrawer = () => {
+    setOpen(!open);
   };
 
-  const list = (anchor) => (
-    <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <List>
-        {['Profile', 'My Account'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['My Loans', 'My Transactions'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
+  const [orders, setOrders] = useState([])
+  const [showOrders, setShowOrders] = useState(false)
+
+  const [showAccount, setShowAccount] = useState(false)
+
+  const hanldeOrders =() => {
+    // setShowOrders(true)
+    // setShowAccount(false)
+    // auth.onAuthStateChanged(user =>{
+    //     if(user){
+    //     database.collection('Orders').onSnapshot(snapshot => {
+    //         const newOrders = snapshot.docs.map((doc) => ({
+    //         ID: doc.id,
+    //         ...doc.data(),
+    //         }))
+    //         setOrders(newOrders)
+    //     })
+    //     }
+    // })
+  }
+
+  const hanldeAccount = () => {
+    setShowAccount(true)
+    setShowOrders(false)
+  }
+
+  //console.log(currentUser)
+
+  const handleSignout = () => {
+    // toast.promise( auth.signOut().then(() => {
+    //   navigate('/')
+    // }),
+    // {
+    //   loading: 'Logging out...',
+    //   success: 'User logged out',
+    //   error: err => err.message,
+    // })
+  }
 
   return (
-    <div>
-      {['left'].map((anchor) => (
-        <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
-          <Drawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
+    <ThemeProvider theme={mdTheme}>
+      <Box sx={{ display: 'flex' }}>
+        <CssBaseline />
+        <AppBar position="absolute" open={open}>
+         
+        </AppBar>
+        <Drawer variant="permanent" open={open}>
+          <Toolbar
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-end',
+              px: [1],
+            }}
           >
-            {list(anchor)}
-          </Drawer>
-        </React.Fragment>
-      ))}
-    </div>
+            <IconButton onClick={toggleDrawer}>
+              <ChevronLeftIcon />
+            </IconButton>
+          </Toolbar>
+          <Divider />
+          <List component="nav">
+
+                <ListItemButton onClick = {hanldeAccount}>
+                <ListItemIcon>
+                    <DashboardIcon />
+                </ListItemIcon>
+                <ListItemText primary="My Account" />
+                </ListItemButton>
+
+                <ListItemButton onClick = {hanldeOrders}>
+                <ListItemIcon>
+                    <ShoppingCartIcon />
+                </ListItemIcon>
+                <ListItemText primary="My Orders" />
+                </ListItemButton>
+                
+                <ListItemButton >
+                <ListItemIcon>
+                    <BarChartIcon />
+                </ListItemIcon>
+                <ListItemText primary="My reviews" />
+                </ListItemButton>
+
+                <ListItemButton onClick = {handleSignout}>
+                <ListItemIcon>
+                <LogoutIcon />
+                </ListItemIcon>
+                <ListItemText primary="Log Out" />
+                </ListItemButton>
+            <Divider sx={{ my: 1 }} />
+          </List>
+        </Drawer>
+        <Box
+          component="main"
+          sx={{
+            backgroundColor: (theme) =>
+              theme.palette.mode === 'light'
+                ? theme.palette.grey[100]
+                : theme.palette.grey[900],
+            flexGrow: 1,
+            height: '100vh',
+            overflow: 'auto',
+          }}
+        >
+          <Toolbar />
+
+            {/* <Box sx = {{minWidth: 400,
+                    width: '50%', 
+                    height: 200, 
+                    display: 'flex', 
+                    alignItems: 'center',
+                    borderRadius: 2,
+                    marginTop: -3,
+                    marginLeft: 3,
+                    border: 1,
+                    borderColor: 'blue'}}>
+                         {currentUser.email}
+                </Box> */}
+          
+            {showOrders && <>
+              
+              <TableContainer component = {Paper} sx = {{marginTop: '1rem', width: '70%'}}>
+            <Table sx = {{minWidth: 450 }} aria-label="simple table">
+              <TableHead sx= {{backgroundColor: 'lightblue'}}>
+                <TableRow>
+                  <StyledTableCell>Order ID</StyledTableCell>
+                  <StyledTableCell>Amount</StyledTableCell>
+                  <StyledTableCell>Address</StyledTableCell>
+                  <StyledTableCell>Status</StyledTableCell>
+                  <StyledTableCell>Actions</StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+
+              {orders.filter(order => order.UserId === uid).map(filteredOrders => (
+                  <TableRow key = {filteredOrders.ID} 
+                  sx = {{'&:last-child td, &:last-child th': {  border: 0 },  minHeight: '2rem'}}>
+                    <TableCell component="th" scope="row">
+                    {filteredOrders.ID} 
+                    </TableCell>
+                    <TableCell >KSH: {filteredOrders.Amount}</TableCell>
+                    <TableCell >{filteredOrders.Address}</TableCell>
+                    <TableCell >{filteredOrders.Status}</TableCell>
+                    <TableCell >
+                    <Tooltip title = 'View Receipt'>
+                      <IconButton>
+                          <ReceiptIcon />
+                      </IconButton>
+                      </Tooltip>
+                    </TableCell>
+                  </TableRow>
+                ))} 
+              </TableBody>
+              </Table>
+              </TableContainer>
+            </>}
+
+            {showAccount  && <>
+              <Box sx = {{width : '90%',
+                minWidth: '500px',
+                height: '80%',
+                minHeight : '500px',
+                border: 1,
+                display: 'flex',
+                justifyContent: 'space-between',
+                borderColor: 'gray',
+                marginTop: -3,
+                marginLeft: 3,
+            }}>
+
+                <Box sx = {{width: '50%',
+                // border: 1,
+                // borderColor: 'blue',
+                margin: 3,
+              }}>
+                  <h5>Profile</h5>
+                  <Box component = 'form' sx={{ mt: 3 }}>
+                      <TextField 
+                      fullWidth
+                      margin="normal"
+                      label ='Name'/>
+
+                      <TextField 
+                      margin="normal"
+                      fullWidth
+                      label ='Email'/>
+
+                      <TextField 
+                      margin="normal"
+                      fullWidth
+                      label ='Phone Number'/>
+
+                      <TextField 
+                      margin="normal"
+                      fullWidth
+                      label ='Address'/>
+                       <Box m={1}
+                            display="flex"
+                            justifyContent="flex-end"
+                            alignItems="flex-end">
+                          <Button>Save </Button>
+                        </Box>
+                  </Box>
+                </Box>
+
+                <Box sx = {{width: '50%',
+                // border: 1,
+                // borderColor: 'blue',
+                margin: 3,
+                
+              }}>
+                  <h5>Change Password</h5>
+                  <Box component = 'form' sx={{ mt: 3 }}>
+                  <TextField 
+                      margin="normal"
+                      fullWidth
+                      label ='Current Password'/>
+
+                      <TextField 
+                      margin="normal"
+                      fullWidth
+                      label ='New Password'/>
+
+                      <TextField 
+                      margin="normal"
+                      fullWidth
+                      label ='Confirm Password'/>
+                          <Box m={1}
+                            display="flex"
+                            justifyContent="flex-end"
+                            alignItems="flex-end">
+                          <Button>Save Changes</Button>
+                        </Box>
+                  </Box>
+                </Box>
+
+              </Box>
+            </>}
+        </Box>
+      </Box>
+    </ThemeProvider>
   );
-}
+} 

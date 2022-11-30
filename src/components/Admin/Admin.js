@@ -31,9 +31,10 @@ import {useSelector} from 'react-redux'
 import toast from 'react-hot-toast';
 import AddLoan from '../Map/Applications';
 import Applications from '../Map/Applications'
- 
+ import { useNavigate } from 'react-router-dom';
+
+
 const drawerWidth = 240;
-const theme = createTheme()
 
 const StyledTableCell = styled(TableCell)(({theme}) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -125,6 +126,8 @@ export default function Admin() {
     })
   }
 
+  let navigate  = useNavigate()
+
   const handleViewApplications = () => {
     setViewApplications(true)
     setViewUsers(false)
@@ -140,6 +143,7 @@ export default function Admin() {
     setViewApplications(false)
     setViewUsers(false)
     setViewloanproducts(true)
+   
   }
 
   let Word;
@@ -264,7 +268,7 @@ export default function Admin() {
           </ListItem>
 
           <ListItem  disablePadding>
-            <ListItemButton >
+            <ListItemButton onClick={() => navigate('/signin') }>
               <ListItemIcon>
                 <LogoutIcon />
               </ListItemIcon>
