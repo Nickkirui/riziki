@@ -290,6 +290,7 @@ export default function Admin() {
               <StyledTableCell>Name</StyledTableCell>
               <StyledTableCell>Email</StyledTableCell>
               <StyledTableCell>ID Number</StyledTableCell>
+              <StyledTableCell>Phone Number</StyledTableCell>
               <StyledTableCell>Actions</StyledTableCell>
             </TableRow>
           </TableHead>
@@ -303,6 +304,8 @@ export default function Admin() {
                 </TableCell>
                 <TableCell >{user.Email}</TableCell>
                 <TableCell >{user.IdNumber}</TableCell>
+                <TableCell >{user.PhoneNumber}</TableCell>
+
                 <TableCell >
                   <IconButton >
                       <DeleteIcon />

@@ -44,6 +44,7 @@ const passwordRef = useRef()
 const fnameRef = useRef()
 const lnameRef = useRef()
 const idnumberRef = useRef()
+const phonenumberRef = useRef()
 
 let navigate = useNavigate()
 
@@ -58,7 +59,7 @@ let navigate = useNavigate()
                 Email: emailRef.current.value,
                 Password: passwordRef.current.value,
                 IdNumber: idnumberRef.current.value,
-               
+                PhoneNumber:phonenumberRef.current.value
             })
             .then(() => {
                 navigate('/signin')
@@ -145,6 +146,18 @@ let navigate = useNavigate()
                   id="IDNumber"
                   autoComplete="ID Number"
                   inputRef={idnumberRef}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="PhoneNumber"
+                  label="Phone Number"
+                  type="Text"
+                  id="PhoneNumber"
+                  autoComplete="ID Number"
+                  inputRef={phonenumberRef}
                 />
               </Grid>
             </Grid>

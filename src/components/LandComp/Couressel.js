@@ -14,8 +14,8 @@ function CarouselComponent() {
           style={{borderRadius: "2ch"}}
         />
         <Carousel.Caption>
-          <h3>Nakuru</h3>
-          <p>Our Nakuru offices located in Egerton.</p>
+          <h3>Riziki</h3>
+          <p>Offers Loan products to people from all walks of life</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -40,9 +40,9 @@ function CarouselComponent() {
         />
 
         <Carousel.Caption>
-          <h3>Third slide label</h3>
+          <h3>Riziki</h3>
           <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+            Your favourite financial partner
           </p>
         </Carousel.Caption>
       </Carousel.Item>

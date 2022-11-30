@@ -47,7 +47,7 @@ function App() {
         <Routes>
           <Route exact path ='/' element = { <Landing /> } />
           <Route path = '/signin' element  ={ <SignIn /> } />
-          <Route path = '/registration' element = { <PrivateLoggedInRoutes><Registration /></PrivateLoggedInRoutes>} />
+          <Route path = '/registration' element = { <Registration />} />
          {/* <Route path = '/homepage' element ={<HomePage/>}/> */}
           {/* <Route path = '/application' element ={<Application/>}/> */}
           <Route path = '/review' element ={<Review/>}/>
