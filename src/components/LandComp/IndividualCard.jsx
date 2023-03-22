@@ -21,7 +21,7 @@ function IndividualCard({loan}) {
           
         </Typography>
         <Typography sx={{ mb: 1.5 }} className='cash' >
-              {loan.amount}
+              
             </Typography>
 
             <Typography variant="body2">

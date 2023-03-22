@@ -151,7 +151,7 @@ export default function Admin() {
     //console.log(application)
     if(user!==null){
       Word = application
-      Word['Status'] = 'Accepted'
+      Word['Status'] = 'Approved`'
       database.collection('Applications').doc(application.ApplicationId).set(Word).then(() => {
         console.log('Approved')
         toast.success('This loan has been accepted')

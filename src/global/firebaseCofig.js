@@ -18,12 +18,12 @@ import 'firebase/compat/storage'
 // };
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB-MGzLHzT3M8kpPfo-1XFKmVXPvB37fvo",
-  authDomain: "rizikimain-835ca.firebaseapp.com",
-  projectId: "rizikimain-835ca",
-  storageBucket: "rizikimain-835ca.appspot.com",
-  messagingSenderId: "1074663379269",
-  appId: "1:1074663379269:web:f2488752870ee4e7886e2c"
+  apiKey: "AIzaSyDr1sKTcW1vh0Nt4Khhhf8DC6XqbZSF6eo",
+  authDomain: "riziki12-1beef.firebaseapp.com",
+  projectId: "riziki12-1beef",
+  storageBucket: "riziki12-1beef.appspot.com",
+  messagingSenderId: "270252332527",
+  appId: "1:270252332527:web:8fe570c0aea1ee4988521a"
 };
 
 // Initialize Firebase

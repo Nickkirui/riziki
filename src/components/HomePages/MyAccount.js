@@ -160,7 +160,7 @@ export default function Account({uid, currentUser }) {
                 <ListItemIcon>
                     <ShoppingCartIcon />
                 </ListItemIcon>
-                <ListItemText primary="My Orders" />
+                <ListItemText primary="My Loans" />
                 </ListItemButton>
                 
                 <ListItemButton >
@@ -170,7 +170,7 @@ export default function Account({uid, currentUser }) {
                 <ListItemText primary="My reviews" />
                 </ListItemButton>
 
-                <ListItemButton onClick = {handleSignout}>
+                <ListItemButton  onClick={() => navigate('/signin') }>
                 <ListItemIcon>
                 <LogoutIcon />
                 </ListItemIcon>
